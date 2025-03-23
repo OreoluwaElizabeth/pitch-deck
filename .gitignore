@@ -1,0 +1,25 @@
+#Python
+--pycache--/
+*.py[cod]
+*.pyo
+*.pyd
+*.h2.db
+*.sqlite3
+
+#Virtual Environment
+.venv/
+venv/
+env/
+
+#IDE
+.idea/
+.vscode/
+
+#Uploads
+uploads/
+
+#Logs
+*.log
+
+#Environment Variables
+.env
