@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import os
+from app.parser import Parser
 
 app = Flask(__name__)
 
@@ -53,9 +54,13 @@ def upload_file():
         except IOError as e:
             return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
 
+        parser = Parser(file_path)
+        parsed_data = parser.parse()
+
         return jsonify({
-            "message": "File uploaded successfully",
-            "file_path": file_path
+            "message": "File uploaded and parsed successfully",
+            "file_path": file_path,
+            "parsed_data": parsed_data
         }), 200
 
     except Exception as e:

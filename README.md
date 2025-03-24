@@ -35,3 +35,18 @@ unittest framework.
 5. File Overwrite.
 6. File Size Exceeded.
 7. File Save Error.
+
+## Data Parsing
+The Parser class is responsible for processing uploaded pitch deck files.
+It extracts relevant content such as Slide Titles, Text Content and Metadata.
+
+## Functionality
+1. Handles both PDF and PPTX files seamlessly.
+2. Uses external libraries to parse file content.
+3. Validates file structure and ensures proper parsing.
+
+## Test Cases
+1. PDF Parsing Success.
+2. PPTX Parsing Success.
+3. Unsupported File Type.
+4. Invalid PDF format.
