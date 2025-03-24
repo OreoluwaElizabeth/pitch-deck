@@ -42,7 +42,7 @@ It extracts relevant content such as Slide Titles, Text Content and Metadata.
 
 ## Functionality
 1. Handles both PDF and PPTX files seamlessly.
-2. Uses external libraries to parse file content.
+2. Uses external libraries to parse file content(PyPDF2 for PDFs and pptx for PowerPoint files)
 3. Validates file structure and ensures proper parsing.
 
 ## Test Cases
