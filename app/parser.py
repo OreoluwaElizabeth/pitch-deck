@@ -1,5 +1,6 @@
 from PyPDF2 import PdfReader
 from pptx import Presentation
+from models import PitchDeckData
 import os
 
 class Parser:
@@ -61,3 +62,20 @@ class Parser:
             return slides
         except Exception as e:
             raise ValueError(f"Failed to parse PPTX: {str(e)}")
+
+
+    def parse_and_store(self):
+        parsed_data = self.parse()
+        stored_count = 0
+
+        for item in parsed_data:
+            data = PitchDeckData(
+                slide_title=item.get('slide_title', ''),
+                text_content=item.get('text_content', ''),
+                metadata=item.get('metadata', {})
+            ).to_dict()
+            PitchDeckData.insert_data(data)
+            stored_count += 1
+
+        return f"{stored_count} slides have been successfully stored in the database."
+

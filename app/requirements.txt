@@ -1,0 +1,4 @@
+Flask==3.1.0
+PyPDF2==3.0.1
+python-pptx==0.6.21
+pymongo==4.11.3

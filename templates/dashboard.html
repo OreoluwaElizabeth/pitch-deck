@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pitch Deck Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Pitch Deck Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Slide Title</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Created Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.slide_title }}</td>
+                <td>{{ item.text_content }}</td>
+                <td>{{ item.metadata.author }}</td>
+                <td>{{ item.metadata.created_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

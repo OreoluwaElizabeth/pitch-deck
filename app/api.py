@@ -55,12 +55,12 @@ def upload_file():
             return jsonify({"error": f"Failed to save file: {str(e)}"}), 500
 
         parser = Parser(file_path)
-        parsed_data = parser.parse()
+        result = parser.parse_and_store()
 
         return jsonify({
             "message": "File uploaded and parsed successfully",
             "file_path": file_path,
-            "parsed_data": parsed_data
+            "database_result": result
         }), 200
 
     except Exception as e:
