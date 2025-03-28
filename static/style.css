@@ -10,6 +10,44 @@ h1 {
     margin-bottom: 20px;
 }
 
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover{
+    background-color: #45a049;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -34,6 +72,19 @@ tr:nth-child(even) {
 
 
 @media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    input[type="file"] {
+        padding: 8px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+    }
+
     table, thead, tbody, th, td, tr {
         display: block;
     }

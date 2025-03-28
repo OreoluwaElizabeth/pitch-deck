@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import os
 from app.parser import Parser
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'pptx'}
@@ -28,6 +30,7 @@ def upload_file():
             return jsonify({"error": "No file uploaded"}), 400
 
         file = request.files['file']
+        file.seek(0)
 
         if file.filename == '':
             return jsonify({"error": "No selected file"}), 400
@@ -65,6 +68,31 @@ def upload_file():
 
     except Exception as e:
         return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+
+
+@app.route('/data', methods=['GET'])
+def get_data():
+    try:
+        try:
+            client = MongoClient(MONGODB_URI)
+            client.server_info()
+            print("Database connection successful")
+        except Exception as db_error:
+            print(f"DB Connection Error: {str(db_error)}")
+            return jsonify({"error": "Database connection failed"}), 500
+
+        db = client[MONGODB_DB]
+        collection = db['pitch_deck_data']
+        count = collection.count_documents({})
+
+        data = list(collection.find({}, {'_id': 0}))  # Exclude MongoDB _id
+        print(f"First document sample: {data[0] if data else 'No data'}")
+
+        return jsonify(data), 200
+
+    except Exception as e:
+        print(f"Data fetch error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

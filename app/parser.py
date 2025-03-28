@@ -1,6 +1,6 @@
 from PyPDF2 import PdfReader
 from pptx import Presentation
-from models import PitchDeckData
+from app.models import PitchDeckData
 import os
 
 class Parser:
@@ -69,13 +69,13 @@ class Parser:
         stored_count = 0
 
         for item in parsed_data:
-            data = PitchDeckData(
-                slide_title=item.get('slide_title', ''),
-                text_content=item.get('text_content', ''),
-                metadata=item.get('metadata', {})
-            ).to_dict()
+            data = {
+                "slide_title": item.get('title', ''),
+                "text_content": item.get('content', ''),
+                "metadata": item.get('metadata', {})
+            }
             PitchDeckData.insert_data(data)
             stored_count += 1
 
-        return f"{stored_count} slides have been successfully stored in the database."
+        return {"message": f"{stored_count} slides stored", "data": parsed_data}
 
